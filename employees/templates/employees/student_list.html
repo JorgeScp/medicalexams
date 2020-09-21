@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Colaboradores{% endblock title %}
+
+{% block breadcrumb %}
+<a class="btn btn-primary" href="{% url 'employee-create' %}"><i
+    class="fas fa-plus"></i> Nuevo Colaborador</a>
+<!-- <a class="btn btn-primary" href="{% url 'employee-upload' %}"><i
+    class="fas fa-upload"></i> Upload students</a> -->
+{% endblock breadcrumb %}
+
+{% block content %}
+  <div class="table-responsive">
+    <table id="studenttable" class="table table-bordered table-hover" data-page-length='100'>
+      <thead class="thead-light">
+        <tr>
+          <th>S/N</th>
+          <th>Nombre</th>
+          <th>No. Documento</th>
+          <th>Departamento</th>
+          <th>Cargo</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for student in students %}
+          <tr class='clickable-row' data-href="{% url 'employee-detail' student.id %}">
+            <td>{{ forloop.counter}}</td>
+            <td>{{ student.name}}</td>
+            <td>{{ student.id}}</td>
+            <td>{{ student.department}}</td>
+            <td>{{ student.job_name}}</td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+  $('#studenttable').DataTable({
+  });
+</script>
+
+{% endblock morejs %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Exámenes{% endblock title %}
+
+{% block breadcrumb %}
+<a class="btn btn-primary" href="{% url 'exams-create' %}"><i
+    class="fas fa-plus"></i>Nuevo Examen</a>
+{% endblock breadcrumb %}
+
+{% block content %}
+  <table id="stafftable" class="table table-bordered table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>S/N</th>
+        <th>Exámenes</th>
+        <th>Aplican para:</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for staff in object_list %}
+        <tr class='clickable-row' data-href="{% url 'exams-detail' staff.id %}">
+          <td>{{ forloop.counter}}</td>
+          <td>{{ staff.exams}}</td>
+          <td>{{ staff.apply}}</td>
+
+        </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+   $('#stafftable').DataTable({
+    select: false
+    });
+</script>
+
+{% endblock morejs %}

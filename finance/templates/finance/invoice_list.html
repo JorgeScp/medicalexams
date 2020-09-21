@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}Pagos y Facturas{% endblock title %}
+
+{% block breadcrumb %}
+<a class="btn btn-primary" href="{% url 'invoice-create' %}"><i
+    class="fas fa-plus"></i> Nuevo Pago</a>
+<!-- <a class="btn btn-primary" href="{% url 'bulk-invoice' %}"><i
+    class="fas fa-upload"></i> Bulk Invoice</a> -->
+{% endblock breadcrumb %}
+
+{% block content %}
+  <div class="table-responsive">
+    <table id="invoicetable" class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <!-- <th>S/N</th> -->
+          <th>Pago</th>
+          <th>Empresa</th>
+          <th>Día Pago</th>
+          <th>Proveedor</th>
+          <th>Link Soporte</th>
+          <th>Pago</th>
+          <th>Legalizado</th>
+          <th>Balance</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for invoice in object_list %}
+          <tr class='clickable-row' data-href="{% url 'invoice-detail' invoice.id %}">
+            <!-- <td>{{ forloop.counter}}</td> -->
+            <td>{{ invoice}}</td>
+            <td>{{ invoice.enterprise}}</td>
+            <td>{{ invoice.payment_day}}</td>
+            <td>{{ invoice.provider}}</td>
+            <td><a href="{{ invoice.payment_link.url}}">Link</a></td>
+            <td>{{ invoice.total_amount_payable | intcomma }}</td>
+            <td>{{ invoice.total_amount_paid | intcomma }}</td>
+            <td>{{ invoice.balance | intcomma }}</td>
+            <td><a class="btn btn-success btn-sm"
+                href="{% url 'receipt-create' %}?invoice={{ invoice.id }}">Añadir FV</a></td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+   $('#invoicetable').DataTable({
+    select: false
+    });
+</script>
+
+{% endblock morejs %}

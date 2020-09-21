@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content-header %}
+<div class="card-header">
+  <div class="card-tools">
+    <a href="#" class="btn btn-tool">Print</a>
+    <a href="{% url 'invoice-update' object.id %}" class="btn btn-tool">
+      <i class="fas fa-edit"></i>
+    </a>
+    <a href="{% url 'invoice-delete' object.id %}" class="btn btn-tool">
+      <i class="fas fa-times"></i>
+    </a>
+  </div>
+</div>
+{% endblock content-header %}
+
+
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-4">
+    <h3>{{ object }} </h3>
+    <h5>{{ object.enterprise }} </h5>
+    <h5>{{ object.payment_day }} </h5>
+    <h5>{{ object.provider }} </h5>
+    
+    <hr>
+    <div>
+      <h4>Balance Esperado: {{ object.balance | intcomma }}</h4>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <table class="table table-sm table-bordered">
+      Detalles Pago</br>
+      <thead class="thead-light">
+        <tr>
+          <th>S/N</th>
+          <th>Descripción</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ forloop.counter }} </td>
+          <td>{{ item.description }} </td>
+          <td>{{ item.amount }} </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td>Total Pagado</td>
+          <td>{{ object.amount_payable | intcomma}}</td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>Total Legalizable</td>
+          <td>{{ object.total_amount_payable | intcomma}}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Total Legalizado</td>
+          <td>{{ object.total_amount_paid | intcomma}}</td>
+        </tr>
+
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<hr>
+
+<h5>FV Legalizadas</h5>
+<table class="table table-bordered table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th>S/N</th>
+      <th>Colaborador</th>
+      <th>Total</th>
+      <th>Fecha de FV</th>
+      <th>Comentario</th>
+      <th>Link FV</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for receipt in receipts %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ receipt.employee.name }}</td>
+      <td>{{ receipt.amount_paid}}</td>
+      <td>{{ receipt.date_paid}}</td>
+      <td>{{ receipt.comment}}</td>
+      <td><a href="{{receipt.receipt_link.url}}">Link</a></td>
+     
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock content %}

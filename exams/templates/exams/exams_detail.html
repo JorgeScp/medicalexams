@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block content-header %}
+<div class="card-header">
+  <div class="card-tools">
+    <a href="#" class="btn btn-tool">Print</a>
+    <a href="{% url 'exams-update' object.id %}" class="btn btn-tool">
+      <i class="fas fa-edit"></i>
+    </a>
+    <a href="{% url 'exams-delete' object.id %}" class="btn btn-tool">
+      <i class="fas fa-times"></i>
+    </a>
+  </div>
+</div>
+{% endblock content-header %}
+
+{% block content %}
+    <div class="row">
+      <div class="col-sm-4">
+        <div>
+          <h3>{{ object }} </h3>
+          <h5>{{ object.exams }} </h5>
+          <h5>{{ object.apply }} </h5>
+         
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div>
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Exámenes
+            </label>
+            <div class="col">
+              {{ object.exams }}
+            </div>
+          </div>
+
+          <div class="form-group border-bottom row">
+            <label class="col">
+               Aplican para:
+            </label>
+            <div class="col">
+              {{ object.apply}}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+{% endblock content %}
