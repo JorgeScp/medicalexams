@@ -36,7 +36,7 @@ class Student(models.Model):
     return f'{self.name}  - {self.department}'
 
   def get_absolute_url(self):
-    return reverse('student-detail', kwargs={'pk': self.pk})
+    return reverse('employee-detail', kwargs={'pk': self.pk})
 
 
 class StudentBulkUpload(models.Model):
