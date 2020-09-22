@@ -7,11 +7,11 @@ from employees.models import Student
 from exams.models import Exams
 
 class Invoice(models.Model):
-  enterprise = models.CharField(max_length=300,blank=True)
-  payment_day = models.DateField(default=timezone.now)
+  enterprise = models.CharField(max_length=300,blank=True,verbose_name="Empresa")
+  payment_day = models.DateField(default=timezone.now,verbose_name="Fecha Pago")
   #payment_amount = models.IntegerField(blank=True,default=0)
-  provider = models.CharField(max_length=300,blank=True)
-  payment_link = models.FileField(blank=True, upload_to='finance/payments/') 
+  provider = models.CharField(max_length=300,blank=True,verbose_name="Proveedor")
+  payment_link = models.FileField(blank=True, upload_to='finance/payments/',verbose_name="Link Pago") 
   # session = models.ForeignKey(AcademicSession, on_delete=models.CASCADE)
   # term = models.ForeignKey(AcademicTerm, on_delete=models.CASCADE)
   # class_for = models.ForeignKey(StudentClass, on_delete=models.CASCADE)
@@ -23,7 +23,7 @@ class Invoice(models.Model):
     ordering = ['payment_day']
 
   def __str__(self):
-    return f'{self.payment_day}'
+    return f'{self.payment_day}-{self.provider}'
 
 
   def balance(self):
@@ -53,19 +53,19 @@ class Invoice(models.Model):
 
 
 class InvoiceItem(models.Model):
-  invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
-  description = models.CharField(max_length=200)
+  invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE,verbose_name="Pago")
+  description = models.CharField(max_length=200,verbose_name="Descripción")
   amount = models.IntegerField()
 
 
 class Receipt(models.Model):
-  invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
-  employee = models.ForeignKey(Student,on_delete=models.CASCADE,null=True)
-  exams = models.ForeignKey(Exams,on_delete=models.CASCADE,null=True)
+  invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE,verbose_name="Pago")
+  employee = models.ForeignKey(Student,on_delete=models.CASCADE,null=True,verbose_name="Colaborador")
+  exams = models.ForeignKey(Exams,on_delete=models.CASCADE,null=True,verbose_name="Exámenes")
   amount_paid = models.IntegerField(verbose_name="Costo Examen")
-  date_paid = models.DateField(default=timezone.now)
-  receipt_link = models.FileField(blank=True, upload_to='finance/receipts/') 
-  comment = models.CharField(max_length=200, blank=True)
+  date_paid = models.DateField(default=timezone.now,verbose_name="Fecha FV")
+  receipt_link = models.FileField(blank=True, upload_to='finance/receipts/',verbose_name="Link") 
+  comment = models.CharField(max_length=200, blank=True,verbose_name="Comentarios")
 
   def __str__(self):
     return f'Receipt on {self.date_paid}'

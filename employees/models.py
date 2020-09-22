@@ -17,7 +17,7 @@ class Student(models.Model):
   ]
 
   #current_status        = models.CharField(max_length=10, choices=STATUS, default='active')
-  date_of_birth         = models.DateField(default=timezone.now)
+  date_of_birth         = models.DateField(default=timezone.now,verbose_name="Fecha Ingreso")
   registration_number   = models.CharField(max_length=200, unique=True, verbose_name="ID")
   Enterprise               = models.CharField(max_length=200,verbose_name="Empresa",blank=True)
   name               = models.CharField(max_length=200,verbose_name="Nombre",blank=True)

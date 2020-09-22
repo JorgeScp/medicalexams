@@ -14,8 +14,8 @@ class Exams(models.Model):
   #     ('female', 'Female')
   # ]
 
-  exams             = models.CharField(max_length=800)
-  apply             = models.CharField(max_length=800)
+  exams             = models.CharField(max_length=800,verbose_name="Exámenes")
+  apply             = models.CharField(max_length=800,verbose_name="Aplican")
 
   def __str__(self):
     return f'{self.exams}'
