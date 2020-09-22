@@ -7,7 +7,7 @@
 {% if object %}
 Update invoice {{ object }}
 {% else %}
-Add new invoice
+Agregar Pago
 {% endif %}
 
 {% endblock title %}
@@ -39,10 +39,10 @@ Add new invoice
     </div>
     <div class="col-sm-6 callout callout-info">
       {{ items.management_form }}
-      <div class="text-center">FEE STRUCTURE</div>
+      <div class="text-center">Datos del Pago</div>
       <div class="row">
-        <div class="col"><strong>Fee Type</strong></div>
-        <div class="col"><strong>Amount</strong></div>
+        <div class="col"><strong>Comisión</strong></div>
+        <div class="col"><strong>Valor Pagado</strong></div>
       </div>
       {% for item in items %}
       <div class="form-group row items-group">
@@ -56,14 +56,14 @@ Add new invoice
 
 
   {% if object %}
-    <h4>RECEIPTS</h4>
+    <h4>Facturas</h4>
     <table class="table table-sm">
       {{ receipts.management_form }}
       <thead class="thead-light">
         <tr>
-          <th>Amount Paid</th>
-          <th>Date Paid</th>
-          <th>Comment</th>
+          <th>Pagado</th>
+          <th>Fecha</th>
+          <th>Comentario</th>
           <th><i class="fa fa-trash"></i></th>
         </tr>
       </thead>
@@ -84,9 +84,9 @@ Add new invoice
   {% endif %}
 
   {% if object %}
-  <input type="submit" class="btn btn-primary" value="Update Record">
+  <input type="submit" class="btn btn-primary" value="Actualizar">
   {% else %}
-  <input type="submit" class="btn btn-primary" value="Add new invoice">
+  <input type="submit" class="btn btn-primary" value="Agregar Pago">
   {% endif %}
 </form>
 

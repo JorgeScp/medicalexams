@@ -6,7 +6,7 @@
   {% if object %}
     Update {{ object }}
   {% else %}
-    Add new student
+    Agregar Colaborador
   {% endif %}
 
 {% endblock title %}
@@ -20,9 +20,9 @@
   {% include 'corecode/form_snippet.html' %}
 
   {% if object %}
-    <input type="submit" class="btn btn-primary" value="Update Record">
+    <input type="submit" class="btn btn-primary" value="Actualizar">
   {% else %}
-    <input type="submit" class="btn btn-primary" value="Add new student">
+    <input type="submit" class="btn btn-primary" value="Agregar Colaborador">
   {% endif %}
 </form>
 
