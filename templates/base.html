@@ -90,7 +90,7 @@
             data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
               <a href="{% url 'employee-list' %}" class="nav-link">
-                <i class="nav-icon fas fa-graduation-cap"></i>
+                <i class="nav-icon fas fa-users"></i>
                 <p>
                   Colaboradores
                 </p>
@@ -98,7 +98,7 @@
             </li>
             <li class="nav-item">
               <a href="{% url 'exams-list' %}" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fas fa-comment-medical"></i>
                 <p>
                   Exámenes
                 </p>
@@ -114,6 +114,17 @@
                 </p>
               </a>
             </li>
+
+            <li class="nav-header">Seguimiento Exámenes</li>
+            <li class="nav-item">
+              <a href="{% url 'employeer-list' %}" class="nav-link">
+                <i class="nav-icon fas fa-notes-medical"></i>
+                <p>
+                  Exámenes Médicos
+                </p>
+              </a>
+            </li>
+
             <!-- <li class="nav-header">Results</li>
             <li class="nav-item">
               <a href="{% url 'create-result' %}" class="nav-link">

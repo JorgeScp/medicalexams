@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content-header %}
+<div class="card-header">
+  <div class="card-tools">
+    <a href="#" class="btn btn-tool">Print</a>
+    <a href="{% url 'employeer-update' object.id %}" class="btn btn-tool">
+      <i class="fas fa-edit"></i>
+    </a>
+    <a href="{% url 'employeer-delete' object.id %}" class="btn btn-tool">
+      <i class="fas fa-times"></i>
+    </a>
+  </div>
+</div>
+{% endblock content-header %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-4">
+    <h3>{{ object }} </h3>
+    <h5>{{ object.employee_record.employee.name }} </h5>
+    <h5>{{ object.employee_record.employee.registration_number }} </h5>
+    <h5>{{ object.employee_record.employee.job_name }} </h5>
+  </div>
+  
+</div>
+
+<hr>
+
+<div class="col-sm-12">
+  <table class="table table-sm table-bordered">
+    Detalles del Examen</br>
+    <thead class="thead-light">
+      <tr>
+        <th>Concepto</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td></td>
+      </tr>
+      
+    </tbody>
+    <tfoot>
+      <tr>
+        
+        <td>Fecha Examen</td>
+        <td>{{object.date}}</td>
+      </tr>
+      <tr>
+        
+        <td>Tipo Examen</td>
+        <td>{{object.type_exam}}</td>
+      </tr>
+      <tr>
+      
+        <td>Concepto Médico</td>
+        <td>{{object.concept}}</td>
+      </tr>
+      <tr>
+       
+        <td>EPP</td>
+        <td>{{object.epp}}</td>
+      </tr>
+      <tr>
+      
+        <td>SVE</td>
+        <td>{{object.sve}}</td>
+      </tr>
+      <tr>
+        
+        <td>Recomendaciones</td>
+        <td>{{object.recomendations}}</td>
+      </tr>
+      <tr>
+        
+        <td>Recomendaciones - Plan de Manejo</td>
+        <td>{{object.recomendations_plan}}</td>
+      </tr>
+      <tr>
+     
+        <td>Restriciones</td>
+        <td>{{object.restrictions}}</td>
+      </tr>
+      <tr>
+      
+        <td>Reubicar</td>
+        <td>{{object.relocate}}</td>
+      </tr>
+      <tr>
+        
+        <td>Comentarios</td>
+        <td>{{object.comments}}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<!--  -->
+
+
+{% endblock content %}

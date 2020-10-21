@@ -7,8 +7,8 @@ from django.core.validators import RegexValidator
 
 class Student(models.Model):
   STATUS = [
-      ('active', 'Active'),
-      ('inactive', 'Inactive')
+      ('activo', 'Activo'),
+      ('inactivo', 'Inactivo')
   ]
 
   GENDER = [
@@ -16,7 +16,7 @@ class Student(models.Model):
       ('female', 'Female')
   ]
 
-  #current_status        = models.CharField(max_length=10, choices=STATUS, default='active')
+  current_status        = models.CharField(max_length=10, choices=STATUS, default='activo',blank=True,null=True)
   date_of_birth         = models.DateField(default=timezone.now,verbose_name="Fecha Ingreso")
   registration_number   = models.CharField(max_length=200, unique=True, verbose_name="ID")
   Enterprise               = models.CharField(max_length=200,verbose_name="Empresa",blank=True)
