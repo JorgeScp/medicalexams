@@ -9,6 +9,72 @@ from django.urls import reverse_lazy
 from employees.models import Student
 from .models import Employee_Record, Exams_Record
 from .forms import ExamsFormSet, Exams_Records
+import xlwt
+
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+
+def export_exams_xls(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="exams.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Styling Data') # this will make a sheet named Users Data - First Sheet
+    styles = dict(
+        bold = 'font: bold 1',
+        italic = 'font: italic 1',
+        # Wrap text in the cell
+        wrap_bold = 'font: bold 1; align: wrap 1;',
+        # White text on a blue background
+        reversed = 'pattern: pattern solid, fore_color blue; font: color white;',
+        # Light orange checkered background
+        light_orange_bg = 'pattern: pattern fine_dots, fore_color white, back_color orange;',
+        # Heavy borders
+        bordered = 'border: top thick, right thick, bottom thick, left thick;',
+        # 16 pt red text
+        big_red = 'font: height 320, color red;',
+    )
+
+    for idx, k in enumerate(sorted(styles)):
+        style = xlwt.easyxf(styles[k])
+        ws.write(idx, 0, k)
+        ws.write(idx, 1, styles[k], style)
+
+    wb.save(response)
+
+    return response
+
+
+# def export_exams_xls(request):
+#     response = HttpResponse(content_type='application/ms-excel')
+#     response['Content-Disposition'] = 'attachment; filename="exams.xls"'
+
+#     wb = xlwt.Workbook(encoding='utf-8')
+#     ws = wb.add_sheet('Exams')
+
+#     # Sheet header, first row
+#     row_num = 0
+
+#     font_style = xlwt.XFStyle()
+#     font_style.font.bold = True
+
+#     columns = ['employee_record', 'employee_record', 'employee_record', 'employee_record', 'receipt','type_exam']
+
+#     for col_num in range(len(columns)):
+#         ws.write(row_num, col_num, columns[col_num], font_style)
+
+#     # Sheet body, remaining rows
+#     font_style = xlwt.XFStyle()
+
+#     rows = Exams_Record.objects.all()
+#     print(rows)
+#     for row in rows:
+#         row_num += 1
+#         for col_num in range(len(row)):
+#             ws.write(row_num, col_num, row[col_num], font_style)
+
+#     wb.save(response)
+#     return response
 
 class EmployeeRListView(LoginRequiredMixin, ListView):
   model = Employee_Record

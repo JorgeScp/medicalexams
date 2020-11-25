@@ -79,8 +79,9 @@
 <table class="table table-bordered table-sm">
   <thead class="thead-light">
     <tr>
-      <th>S/N</th>
       <th>Colaborador</th>
+      <th>ID</th>
+      <th>Centro Costo</th>
       <th>Total</th>
       <th>Fecha de FV</th>
       <th>Comentario</th>
@@ -90,8 +91,9 @@
   <tbody>
     {% for receipt in receipts %}
     <tr>
-      <td>{{ forloop.counter }}</td>
       <td>{{ receipt.employee.name }}</td>
+      <td>{{ receipt.employee.registration_number }}</td>
+      <td>{{ receipt.employee.department }}</td>
       <td>{{ receipt.amount_paid}}</td>
       <td>{{ receipt.date_paid}}</td>
       <td>{{ receipt.comment}}</td>

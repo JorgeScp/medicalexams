@@ -49,8 +49,6 @@
         </li> -->
       </ul>
 
-
-
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
@@ -114,7 +112,7 @@
                 </p>
               </a>
             </li>
-
+            {% if request.user.is_active and request.user.is_staff %}
             <li class="nav-header">Seguimiento Exámenes</li>
             <li class="nav-item">
               <a href="{% url 'employeer-list' %}" class="nav-link">
@@ -124,7 +122,7 @@
                 </p>
               </a>
             </li>
-
+            {% endif %}
             <!-- <li class="nav-header">Results</li>
             <li class="nav-item">
               <a href="{% url 'create-result' %}" class="nav-link">

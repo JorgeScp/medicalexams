@@ -1,6 +1,6 @@
 from django.urls import path
-
 from .views import EmployeeRCreateView, EmployeeRListView, ExamsDetailView, EmployeeRDeleteView, EmployeeRDetailView,EmployeeRUpdateView,ExamsRCreateView, ExamsRUpdateView, bulk_invoice
+from . import views
 
 urlpatterns = [
     path('list/', EmployeeRListView.as_view(), name='employeer-list'),
@@ -11,6 +11,6 @@ urlpatterns = [
     path('<int:pk>/delete/', EmployeeRDeleteView.as_view(), name='employeer-delete'),
     path('examsr/create', ExamsRCreateView.as_view(), name='examsr-create'),
     path('examsr/<int:pk>/update/', ExamsRUpdateView.as_view(), name='examsr-update'),
-
+    path(r'^export/xls/$', views.export_exams_xls, name='export_exams_xls'),
     path('bulk-invoice/',  bulk_invoice, name='bulk-invoice'),
 ]
