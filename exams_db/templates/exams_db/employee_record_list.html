@@ -17,12 +17,10 @@
       <thead class="thead-light">
         <tr>
           <!-- <th>S/N</th> -->
-          <th>Colaborador</th>
           <th>Empresa</th>
-          <th>Nombre</th>
+          <th>Colaborador</th>
           <th>ID</th>
           <th>Cargo</th>
-          
           <th></th>
         </tr>
       </thead>
@@ -31,11 +29,10 @@
         {% for empr in object_list %}
           <tr class='clickable-row' data-href="{% url 'employeer-detail' empr.id %}">
             <!-- <td>{{ forloop.counter}}</td> -->
-            <td>{{ empr}}</td>
             <td>{{ empr.enterprise}}</td>
-            <td>{{ empr.employee.name}}</td>
+            <td>{{ empr}}</td>
             <td>{{ empr.employee.registration_number}}</td>
-            <td>{{ empr.employee.registration_number}}</td>
+            <td>{{ empr.employee.job_name}}</td>
             <td><a class="btn btn-success btn-sm"
                 href="{% url 'examsr-create' %}?employee_record={{ empr.id }}">Añadir Examen</a></td>
           </tr>

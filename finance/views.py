@@ -45,7 +45,7 @@ class InvoiceDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(InvoiceDetailView, self).get_context_data(**kwargs)
-        context['receipts'] = Receipt.objects.filter(invoice=self.object)
+        context['receipts'] = Receipt.objects.filter(invoice=self.object).order_by('-date_paid')
         context['items'] = InvoiceItem.objects.filter(invoice=self.object)
         return context
 
