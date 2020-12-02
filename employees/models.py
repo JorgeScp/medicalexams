@@ -5,7 +5,7 @@ from django.urls import reverse
 from corecode.models import StudentClass, Subject
 from django.core.validators import RegexValidator
 
-class Student(models.Model):
+class Employee(models.Model):
   STATUS = [
       ('activo', 'Activo'),
       ('inactivo', 'Inactivo')

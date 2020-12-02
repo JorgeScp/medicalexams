@@ -3,14 +3,14 @@ from django.contrib import messages
 from django.shortcuts import render, HttpResponseRedirect, redirect
 
 from corecode.models import AcademicSession, AcademicTerm
-from employees.models import Student
+from employees.models import Employee
 
 from .models import Result
 from .forms import CreateResults, EditResults
 
 @login_required
 def create_result(request):
-  students = Student.objects.all()
+  students = Employee.objects.all()
   if request.method == 'POST':
 
     #after visiting the second page

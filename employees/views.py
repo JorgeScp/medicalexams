@@ -9,18 +9,18 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.forms import widgets
 from django.urls import reverse_lazy
 
-from .models import Student, StudentBulkUpload
+from .models import Employee, StudentBulkUpload
 from finance.models import Invoice
 
 @login_required
 def student_list(request):
-  students = Student.objects.all()
-  return render(request, 'employees/student_list.html', {"students":students})
+  students = Employee.objects.all()
+  return render(request, 'employees/employee_list.html', {"students":students})
 
 
 class StudentDetailView(LoginRequiredMixin, DetailView):
-    model = Student
-    template_name = "employees/student_detail.html"
+    model = Employee
+    template_name = "employees/employee_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super(StudentDetailView, self).get_context_data(**kwargs)
@@ -29,7 +29,7 @@ class StudentDetailView(LoginRequiredMixin, DetailView):
 
 
 class StudentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    model = Student
+    model = Employee
     fields = '__all__'
     success_message = "Nuevo colaborador agregado."
 
@@ -44,7 +44,7 @@ class StudentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 
 class StudentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = Student
+    model = Employee
     fields = '__all__'
     success_message = "Record successfully updated."
 
@@ -62,13 +62,13 @@ class StudentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 
 class StudentDeleteView(LoginRequiredMixin, DeleteView):
-    model = Student
+    model = Employee
     success_url = reverse_lazy('employee-list')
 
 
 class StudentBulkUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = StudentBulkUpload
-    template_name = 'students/students_upload.html'
+    template_name = 'students/employee_upload.html'
     fields = ['csv_file']
     success_url = '/employee/list'
     success_message = 'Successfully uploaded students'

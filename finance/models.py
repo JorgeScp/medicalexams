@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.urls import reverse
 
 from corecode.models import StudentClass, AcademicSession, AcademicTerm
-from employees.models import Student
+from employees.models import Employee
 from exams.models import Exams
 
 class Invoice(models.Model):
@@ -60,7 +60,7 @@ class InvoiceItem(models.Model):
 
 class Receipt(models.Model):
   invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE,verbose_name="Pago")
-  employee = models.ForeignKey(Student,on_delete=models.CASCADE,null=True,verbose_name="Colaborador")
+  employee = models.ForeignKey(Employee,on_delete=models.CASCADE,null=True,verbose_name="Colaborador")
   exams = models.ForeignKey(Exams,on_delete=models.CASCADE,null=True,verbose_name="Exámenes")
   amount_paid = models.IntegerField(verbose_name="Costo Examen")
   date_paid = models.DateField(default=timezone.now,verbose_name="Fecha FV")

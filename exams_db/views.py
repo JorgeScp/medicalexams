@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.forms import widgets
 from django.urls import reverse_lazy
 
-from employees.models import Student
+from employees.models import Employee
 from .models import Employee_Record, Exams_Record
 from .forms import ExamsFormSet, Exams_Records
 import xlwt

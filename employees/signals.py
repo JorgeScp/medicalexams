@@ -5,7 +5,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from corecode.models import StudentClass
-from .models import Student, StudentBulkUpload
+from .models import Employee, StudentBulkUpload
 
 @receiver(post_save, sender=StudentBulkUpload)
 def create_bulk_student(sender, created, instance, *args, **kwargs):

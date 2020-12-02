@@ -21,6 +21,12 @@ class ExamsAdmin(ImportExportModelAdmin):
         model = Exams_Record
         fields = ('author',)
 
-# admin.site.register(Exams_Record)
-admin.site.register(Employee_Record)
-# Register your models here.
+@admin.register(Employee_Record)
+class EmployeeRAdmin(ImportExportModelAdmin):
+
+    class Meta:
+        model = Employee_Record
+
+# # admin.site.register(Exams_Record)
+# admin.site.register(Employee_Record)
+# # Register your models here.

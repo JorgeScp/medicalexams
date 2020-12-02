@@ -2,14 +2,14 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 
-from employees.models import Student
+from employees.models import Employee
 from exams.models import Exams
 from finance.models import Receipt
 
 class Employee_Record(models.Model):
   date = models.DateField(default=timezone.now,verbose_name="Fecha Registro")
   enterprise = models.CharField(max_length=300,blank=True,verbose_name="Empresa")
-  employee = models.ForeignKey(Student,null=True,on_delete=models.CASCADE,verbose_name="Colaborador")
+  employee = models.ForeignKey(Employee,null=True,on_delete=models.CASCADE,verbose_name="Colaborador")
   
   #payment_link = models.FileField(blank=True, upload_to='finance/payments/',verbose_name="Link Pago") 
   # balance_from_previous_term = models.IntegerField(default=0)
